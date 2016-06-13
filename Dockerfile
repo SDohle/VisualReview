@@ -14,22 +14,23 @@ RUN wget -q -O /usr/bin/lein     https://raw.githubusercontent.com/technomancy/l
 ENV APP_HOME /usr/local/visualreview
 ENV APP_TEMP_HOME /usr/local/visualreviewTemp
 
-RUN mkdir -p $APP_HOME
-RUN mkdir -p $APP_TEMP_HOME
+# RUN mkdir -p ${APP_HOME}
+# RUN mkdir -p ${APP_TEMP_HOME}
 
-WORKDIR $APP_TEMP_HOME
+WORKDIR ${APP_HOME}
+WORKDIR ${APP_TEMP_HOME}
 
 # add source
-ADD . $APP_TEMP_HOME
+ADD . ${APP_TEMP_HOME}
 
 RUN cd $(npm root -g)/npm \
     && npm install fs-extra \
     && sed -i -e s/graceful-fs/fs-extra/ -e s/fs.rename/fs.move/ ./lib/utils/rename.js
 
 RUN LEIN_ROOT=true lein uberjar
-ADD target/*-standalone.jar $APP_HOME ||| CONTINUE with warning
+COPY target/*-standalone.jar ${APP_HOME} ||| CONTINUE with warning
 
-COPY config.edn $APP_HOME
+COPY config.edn ${APP_HOME}
 
 RUN rm -fr $APP_TEMP_HOME
 
