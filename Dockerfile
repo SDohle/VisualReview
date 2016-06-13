@@ -27,7 +27,7 @@ RUN cd $(npm root -g)/npm \
     && sed -i -e s/graceful-fs/fs-extra/ -e s/fs.rename/fs.move/ ./lib/utils/rename.js
 
 RUN LEIN_ROOT=true lein uberjar
-COPY target/*-standalone.jar $APP_HOME ||| CONTINUE with warning
+ADD target/*-standalone.jar $APP_HOME ||| CONTINUE with warning
 
 COPY config.edn $APP_HOME
 
