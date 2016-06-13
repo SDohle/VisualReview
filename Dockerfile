@@ -30,10 +30,10 @@ RUN cd $(npm root -g)/npm \
 RUN LEIN_ROOT=true lein uberjar
 
 WORKDIR ${APP_HOME}
-ADD ${APP_TEMP_HOME}/target/*-standalone.jar ${APP_HOME}
+RUN mv ${APP_TEMP_HOME}/target/*-standalone.jar ${APP_HOME}
 # COPY target/*-standalone.jar /usr/local/visualreview ||| CONTINUE with warning
 
-ADD ${APP_TEMP_HOME}/config.edn .
+RUN cp ${APP_TEMP_HOME}/config.edn .
 
 RUN rm -fr $APP_TEMP_HOME
 
