@@ -11,11 +11,11 @@ RUN npm install -g grunt-cli
 RUN apt-get  -y install wget
 RUN wget -q -O /usr/bin/lein     https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein     && chmod +x /usr/bin/lein &&     lein
 
-ENV APP_HOME=/usr/local/visualreview
-ENV APP_TEMP_HOME=/usr/local/visualreviewTemp
+ENV APP_HOME /usr/local/visualreview
+ENV APP_TEMP_HOME /usr/local/visualreviewTemp
 
 RUN mkdir -p $APP_HOME
-RUN mkdir -p APP_TEMP_HOME
+RUN mkdir -p $APP_TEMP_HOME
 
 WORKDIR $APP_TEMP_HOME
 
