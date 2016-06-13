@@ -1,4 +1,4 @@
-FROM node:slim
+FROM node
 EXPOSE 7000
 RUN apt-get -y update && apt-get -y upgrade
 RUN apt-get -y install openjdk-7-jdk
