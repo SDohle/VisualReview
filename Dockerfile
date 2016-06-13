@@ -1,4 +1,4 @@
-FROM node
+FROM node:slim
 EXPOSE 7000
 RUN apt-get -y update && apt-get -y upgrade
 RUN apt-get -y install openjdk-7-jdk
@@ -42,11 +42,17 @@ RUN mv `ls *-standalone.jar` app-standalone.jar
 
 # RUN mkdir -p $APP_HOME
 
+# remove openjdk and install openjreheadless
+RUN apt-get remove -y openjdk-7-jdk \
+    &&  apt-get -y install openjdk-7-jre-headless
+
+
 # clean
 RUN apt-get remove -y wget  \
     && apt-get clean \
     && apt-get autoremove -y \
-    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
+    && rm -fr /root/.cache  /root/.lein /root/.m2 /root/.npm /root/.node-gyp
 
 CMD ["java", "-jar", "app-standalone.jar"]
 
