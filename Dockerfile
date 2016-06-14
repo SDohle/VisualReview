@@ -1,6 +1,7 @@
 FROM node
 EXPOSE 7000
 RUN apt-get -y update  \
+    && apt-get -y upgrade  \
     && apt-get -y install openjdk-7-jdk --no-install-recommends \
     && npm install bower -g \
     && echo '{ "allow_root": true }' > /root/.bowerrc \
