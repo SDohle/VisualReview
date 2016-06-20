@@ -1,4 +1,4 @@
-FROM node:0.10.45-slim
+FROM node:slim
 EXPOSE 7000
 RUN apt-get -y update  \
     && apt-get -y upgrade  \
