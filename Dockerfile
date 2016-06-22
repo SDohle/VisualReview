@@ -41,5 +41,4 @@ RUN mv ${APP_TEMP_HOME}/output/*-standalone.jar ${APP_HOME}  \
     && mv `ls *-standalone.jar` app-standalone.jar
 
 
-
 CMD ["java", "-jar", "app-standalone.jar"]
