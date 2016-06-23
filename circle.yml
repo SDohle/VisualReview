@@ -1,0 +1,21 @@
+machine:
+  services:
+    - docker
+
+test:
+  override:
+    - lein test-all
+    - lein uberjar
+    - mkdir DIST
+    - cp Dockerfile.dist DIST/
+    - cp `ls target/*-standalone.jar` DIST/app-standalone.jar
+    - cp config.edn DIST/
+    - cd BUILD
+    - docker build -t rgroult2/visualreview -f Dockerfile.dist
+
+deployment:
+  hub:
+    branch: develop
+    commands:
+      - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+      - docker push rgroult2/visualreview
