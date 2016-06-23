@@ -1,4 +1,4 @@
-FROM node:slim
+FROM node
 EXPOSE 7000
 RUN apt-get -y update  \
     && apt-get -y upgrade  \
@@ -39,6 +39,7 @@ RUN mv ${APP_TEMP_HOME}/output/*-standalone.jar ${APP_HOME}  \
     && cp ${APP_TEMP_HOME}/config.edn .  \
     && rm -fr $APP_TEMP_HOME  \
     && mv `ls *-standalone.jar` app-standalone.jar
+
 
 
 CMD ["java", "-jar", "app-standalone.jar"]
