@@ -10,8 +10,7 @@ test:
     - cp Dockerfile.dist DIST/
     - cp `ls target/*-standalone.jar` DIST/app-standalone.jar
     - cp config.edn DIST/
-    - cd BUILD
-    - docker build -t rgroult2/visualreview -f Dockerfile.dist .
+    - docker build -t rgroult2/visualreview -f Dockerfile.dist BUILD
 
 deployment:
   hub:
