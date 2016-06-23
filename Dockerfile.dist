@@ -2,8 +2,12 @@ FROM anapsix/alpine-java:jdk8
 
 EXPOSE 7000
 
-RUN mkdir -p /app/vr/
-ADD app-standalone.jar /app/vr/
-ADD config.edn /app/vr/
+ENV APP_HOME /app/vr/
+
+RUN mkdir -p ${APP_HOME}
+ADD app-standalone.jar /${APP_HOME}
+ADD config.edn ${APP_HOME}
+
+WORKDIR ${APP_HOME}
 
 CMD ["java", "-jar", "/app/vr/app-standalone.jar"]

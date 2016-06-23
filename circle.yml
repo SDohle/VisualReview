@@ -7,7 +7,7 @@ test:
     - lein test-all
     - lein uberjar
     - cp target/*.jar $CIRCLE_ARTIFACTS
-    
+
 deployment:
   hub:
     branch: dockerfile
