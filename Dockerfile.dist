@@ -4,5 +4,6 @@ EXPOSE 7000
 
 RUN mkdir -p /app/vr/
 ADD app-standalone.jar /app/vr/
+ADD config.edn /app/vr/
 
 CMD ["java", "-jar", "/app/vr/app-standalone.jar"]
